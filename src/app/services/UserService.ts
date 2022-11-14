@@ -16,7 +16,6 @@ import {
   GetAllUserDto,
   GetUserDto,
   PagedResultRoleDto,
-  ProjectUsersDto,
   PUDto,
   RoleDto,
 } from "../dto/responses";

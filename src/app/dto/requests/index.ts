@@ -1,4 +1,3 @@
-export { TaskDto } from "../common/TaskDto";
 
 export { CreateUserDTO } from "./user/CreateUserDto";
 
