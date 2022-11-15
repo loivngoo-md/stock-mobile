@@ -17,8 +17,8 @@ class UserRouter extends BaseRouter {
   public init() {
     this._router.post(
       "/UpdateYourOwnAvatar",
-      authenticator.authenticate,
-      Authorization.confirm("BASICUSER"),
+      // authenticator.authenticate,
+      // Authorization.confirm("BASICUSER"),
       upload.single("file"),
       this.controller.updateOwnAvatar
     );
@@ -37,17 +37,10 @@ class UserRouter extends BaseRouter {
       this.controller.create
     );
 
-    this._router.get(
-      "/GetAllManager",
-      authenticator.authenticate,
-      Authorization.confirm("ADMIN"),
-      this.controller.getAllManager
-    );
-
     this._router.delete(
       "/delete",
-      authenticator.authenticate,
-      Authorization.confirm("ADMIN"),
+      // authenticator.authenticate,
+      // Authorization.confirm("ADMIN"),
       this.controller.delete
     );
 
@@ -61,14 +54,14 @@ class UserRouter extends BaseRouter {
     this._router.post(
       "/GetAllPagging",
       authenticator.authenticate,
-      Authorization.confirm("ADMIN"),
-      this.controller.getAllPagging
+      // Authorization.confirm("ADMIN"),
+      // this.controller.getAllPagging
     );
 
     this._router.post(
       "/ActiveUser",
-      authenticator.authenticate,
-      Authorization.confirm("ADMIN"),
+      // authenticator.authenticate,
+      // Authorization.confirm("ADMIN"),
       this.controller.active
     );
 
@@ -81,7 +74,7 @@ class UserRouter extends BaseRouter {
 
     this._router.post(
       "/upload/cccd",
-      authenticator.authenticate,
+      // authenticator.authenticate,
       // Authorization.confirm("ADMIN"),
       upload.single("file"),
       this.controller.updateAvatar
@@ -105,8 +98,8 @@ class UserRouter extends BaseRouter {
 
     this._router.put(
       "/update",
-      authenticator.authenticate,
-      Authorization.confirm("ADMIN"),
+      // authenticator.authenticate,
+      // Authorization.confirm("ADMIN"),
       this.controller.update
     );
   }
