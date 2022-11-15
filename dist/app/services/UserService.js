@@ -14,10 +14,20 @@ const core_1 = require("../core");
 const base_1 = require("./base");
 const enums_1 = require("../enums");
 const repositories_1 = require("../../dataAccess/repositories");
+const IdInfoRepo_1 = require("src/dataAccess/repositories/IdInfoRepo");
 class UserService extends base_1.BaseService {
     constructor() {
         super(new repositories_1.UserRepository());
         this._roleRepos = new repositories_1.RoleRepository();
+        this._idInfoRepo = new IdInfoRepo_1.IdInfoRepository();
+        this.getListCccd = (user_id) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield this._idInfoRepo.findByFilter({ id: user_id });
+            }
+            catch (error) {
+                throw new core_1.ApiError(enums_1.HttpStatusCode.BAD_REQUEST, `Error is: ${error}`);
+            }
+        });
         this.delete = (id) => __awaiter(this, void 0, void 0, function* () {
             return yield this._repos.delete(id);
         });

@@ -24,11 +24,21 @@ import {
   RoleRepository,
   UserRepository,
 } from "../../dataAccess/repositories";
+import { IdInfoRepository } from "src/dataAccess/repositories/IdInfoRepo";
 
 class UserService extends BaseService<UserRepository> {
   private _roleRepos = new RoleRepository();
+  private _idInfoRepo = new IdInfoRepository();
   constructor() {
     super(new UserRepository());
+  }
+
+  public getListCccd = async (user_id) => {
+    try {
+      return  await this._idInfoRepo.findByFilter({id: user_id})
+    } catch (error) {
+      throw new ApiError(HttpStatusCode.BAD_REQUEST, `Error is: ${error}`);
+    }
   }
 
   public delete = async (id: number): Promise<boolean> => {

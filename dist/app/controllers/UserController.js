@@ -66,6 +66,12 @@ class UserController {
                 next(error);
             }
         });
+        this.getListCccd = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            const userId = +req.body.user_id;
+            const result = yield this._business.getListCccd(userId);
+            const response = Object.assign(Object.assign({}, core_1.ApiResponse), { result });
+            return res.status(enums_1.HttpStatusCode.OK).json(response);
+        });
         this.updateAvatar = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             const userId = +req.body.userId;
             const avatarPath = `/avatars/${req.file.filename}`;

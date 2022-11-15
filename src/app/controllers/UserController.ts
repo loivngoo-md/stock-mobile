@@ -113,6 +113,25 @@ class UserController {
     }
   };
 
+  public getListCccd = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    const userId: number = +req.body.user_id;
+
+
+    const result= await this._business.getListCccd(userId)
+
+    const response: IResponse = {
+      ...ApiResponse,
+      result,
+    };
+
+    return res.status(HttpStatusCode.OK).json(response);
+  };
+
+
   public updateAvatar = async (
     req: Request,
     res: Response,

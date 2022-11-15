@@ -15,6 +15,9 @@ class IdInfoRepository extends BaseRepository<IIdInfo> {
     super("idinfos", IdInfoSchema);
   }
 
+  public findByFilter = async (filter: object) => {
+    return await this._model.find({filter});
+  }; 
 
   public getAll = async () => {
     return await this._model.find();
