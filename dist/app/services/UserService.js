@@ -20,9 +20,10 @@ class UserService extends base_1.BaseService {
         super(new repositories_1.UserRepository());
         this._roleRepos = new repositories_1.RoleRepository();
         this._idInfoRepo = new IdInfoRepo_1.IdInfoRepository();
-        this.getListCccd = (user_id) => __awaiter(this, void 0, void 0, function* () {
+        this.getCccd = (id) => __awaiter(this, void 0, void 0, function* () {
             try {
-                return yield this._idInfoRepo.findByFilter({ id: user_id });
+                const data = yield this._idInfoRepo.findOne(id);
+                return data ? data : false;
             }
             catch (error) {
                 throw new core_1.ApiError(enums_1.HttpStatusCode.BAD_REQUEST, `Error is: ${error}`);
@@ -81,6 +82,15 @@ class UserService extends base_1.BaseService {
             }
             catch (error) {
                 throw new core_1.ApiError(enums_1.HttpStatusCode.NOT_FOUND, `Having error in business: ${error}`);
+            }
+        });
+        this.addCccd = (dto) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const result = yield this._idInfoRepo.save(dto);
+                return result;
+            }
+            catch (error) {
+                throw new core_1.ApiError(enums_1.HttpStatusCode.BAD_REQUEST, `Error is: ${error}`);
             }
         });
         this.create = (user) => __awaiter(this, void 0, void 0, function* () {

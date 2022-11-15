@@ -48,6 +48,10 @@ class UserRouter extends base_1.BaseRouter {
         // authenticator.authenticate,
         // Authorization.confirm("ADMIN"),
         this.controller.getListCccd);
+        this._router.post("/add-cccd", 
+        // authenticator.authenticate,
+        // Authorization.confirm("ADMIN"),
+        this.controller.addCccd);
         this._router.put("/update", 
         // authenticator.authenticate,
         // Authorization.confirm("ADMIN"),

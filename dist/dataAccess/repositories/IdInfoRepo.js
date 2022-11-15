@@ -15,8 +15,8 @@ const schemas_1 = require("../schemas");
 class IdInfoRepository extends base_1.BaseRepository {
     constructor() {
         super("idinfos", schemas_1.IdInfoSchema);
-        this.findByFilter = (filter) => __awaiter(this, void 0, void 0, function* () {
-            return yield this._model.find({ filter });
+        this.findOne = (user_id) => __awaiter(this, void 0, void 0, function* () {
+            return yield this._model.findOne({ user_id });
         });
         this.getAll = () => __awaiter(this, void 0, void 0, function* () {
             return yield this._model.find();

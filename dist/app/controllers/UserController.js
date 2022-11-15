@@ -68,7 +68,13 @@ class UserController {
         });
         this.getListCccd = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             const userId = +req.body.user_id;
-            const result = yield this._business.getListCccd(userId);
+            const result = yield this._business.getCccd(userId);
+            const response = Object.assign(Object.assign({}, core_1.ApiResponse), { result });
+            return res.status(enums_1.HttpStatusCode.OK).json(response);
+        });
+        this.addCccd = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            const dto = req.body;
+            const result = yield this._business.addCccd(dto);
             const response = Object.assign(Object.assign({}, core_1.ApiResponse), { result });
             return res.status(enums_1.HttpStatusCode.OK).json(response);
         });
@@ -117,7 +123,8 @@ class UserController {
                 const user = req.body;
                 delete user.avatarPath;
                 user.avatarPath = "https://cdn-icons-png.flaticon.com/512/21/21104.png";
-                const result = yield this._business.create(user);
+                yield this._business.create(user);
+                const result = null;
                 const response = Object.assign(Object.assign({}, core_1.ApiResponse), { result });
                 return res.status(enums_1.HttpStatusCode.OK).json(response);
             }
@@ -128,7 +135,17 @@ class UserController {
         this.getUserNotPagging = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const result = yield this._business.getUserNotPagging();
-                const response = Object.assign(Object.assign({}, core_1.ApiResponse), { result });
+                let tmp = [];
+                for (const user of result) {
+                    const list_cccd = yield this._business.getCccd(user.id);
+                    if (list_cccd) {
+                        tmp.push({
+                            user_info: user,
+                            id_info: list_cccd
+                        });
+                    }
+                }
+                const response = Object.assign(Object.assign({}, core_1.ApiResponse), { result: tmp });
                 return res.status(enums_1.HttpStatusCode.OK).json(response);
             }
             catch (error) {

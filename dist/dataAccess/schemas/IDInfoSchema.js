@@ -14,5 +14,6 @@ exports.IdInfoSchema = new mongoose_1.Schema({
     approver: { type: String },
     isVerified: { type: Boolean },
     id: { type: Number },
+    user_id: { type: Number },
 });
 //# sourceMappingURL=IDInfoSchema.js.map
