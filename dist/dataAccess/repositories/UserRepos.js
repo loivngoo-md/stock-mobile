@@ -38,10 +38,10 @@ class UserRepository extends base_1.BaseRepository {
             }
         });
         this.getUserNotPagging = () => __awaiter(this, void 0, void 0, function* () {
-            return yield this._model.find({}, "id name isActive type jobTitle level userCode branch avatarPath");
+            return yield this._model.find();
         });
         this.getAllManager = () => __awaiter(this, void 0, void 0, function* () {
-            return yield this._model.find({ managerId: { $ne: 0 } }, "id name type isActive jobTitle level userCode branch avatarPath");
+            return yield this._model.find({ managerId: { $ne: 0 } });
         });
         this.getAllPagging = (filter) => __awaiter(this, void 0, void 0, function* () {
             let filterSearch = {};
@@ -50,7 +50,7 @@ class UserRepository extends base_1.BaseRepository {
             }
             const keyword = new RegExp(filter.searchText, "i");
             let items = yield this._model
-                .find({}, "id username name surname emailAddress phoneNumber address isActive fullName roleNames type salary salaryAt startDateAt managerId branch sex creationTime morningWorking allowedLeaveDay userCode jobTitle level registerWorkDay morningStartAt morningEndAt afternoonWorking afternoonEndAt avatarPath")
+                .find()
                 .skip(filter.skipCount)
                 .limit(filter.maxResultCount)
                 .lean();
