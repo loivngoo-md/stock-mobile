@@ -21,49 +21,40 @@ export interface IUser extends IBase {
 
   isActive: boolean;
 
-  isStopWork: boolean;
+  isVerified: boolean;
 
   roleNames: string[];
 
   password: string;
 
-  type: TypeUser;
+  agent_code: string;
 
-  jobTitle: string;
+  superior: string;
 
-  level: Level;
+  login_ip: string;
 
-  allowedLeaveDay: number;
+  phone: string;
 
-  startDateAt: string;
+  balance: number;
 
-  salary: number;
+  available: number;
 
-  salaryAt: string;
+  freeze: number;
 
-  userCode: string;
+  withdrawable: number;
 
-  managerId: number;
+  same_day_selling_income: string;
 
-  branch: Branch;
+  ipo_application: boolean;
 
-  sex: Sex;
+  last_login_ip: string;
 
-  morningWorking: string;
+  created_by: string;
 
-  morningStartAt: string;
+  created_at: Date;
+  isAdmin: boolean;
+  isSuperAdmin: boolean
 
-  morningEndAt: string;
-
-  afternoonWorking: string;
-
-  afternoonStartAt: string;
-
-  afternoonEndAt: string;
-
-  isWorkingTimeDefault: boolean;
-
-  registerWorkDay: string;
 
   avatarPath: string;
 }

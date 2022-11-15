@@ -30,8 +30,6 @@ class UserRouter extends BaseRouter {
       this.controller.getRoles
     );
 
-
-
     this._router.post(
       "/create",
       // authenticator.authenticate,

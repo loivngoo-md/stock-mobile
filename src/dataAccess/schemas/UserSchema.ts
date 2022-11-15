@@ -7,60 +7,58 @@ import { IUser } from "../../interfaces";
 import { PasswordManager } from "../../app/tools";
 
 const UserSchema: mongoose.Schema = new mongoose.Schema<IUser>({
-  id: { type: Number },
+  id: {type: Number},
 
-  username: { type: String},
+  username: {type: String},
 
-  name: { type: String, require: true },
+  name: {type: String},
 
-  surname: { type: String, require: true },
+  surname: {type: String},
 
-  password: { type: String, require: true },
+  fullName: {type: String},
 
-  emailAddress: { type: String, require: true },
+  emailAddress: {type: String},
+  phoneNumber:{ type: String},
 
-  phoneNumber: { type: String },
+  address: {type: String},
 
-  address: { type: String },
+  isActive: {type: Boolean},
 
-  isActive: { type: Boolean },
+  isVerified: {type: Boolean},
 
-  roleNames: [String],
+  roleNames: {type: []},
 
-  type: { type: Number, enum: TypeUser },
+  password: {type: String},
 
-  jobTitle: { type: String },
+  agent_code: {type: String},
 
-  level: { type: Number, enum: Level },
+  superior: {type: String},
 
-  registerWorkDay: { type: String },
+  login_ip: {type: String},
 
-  allowedLeaveDay: { type: Number },
+  phone: {type: String},
 
-  startDateAt: { type: String },
+  balance: {type: Number},
 
-  salary: { type: Number },
+  available: {type: Number},
 
-  salaryAt: { type: String },
+  freeze: {type: Number},
 
-  userCode: { type: String },
+  withdrawable: {type: Number},
 
-  managerId: { type: Number },
+  same_day_selling_income:  {type: String},
 
-  branch: { type: Number, enum: Branch },
+  ipo_application: {type: Boolean},
 
-  sex: { type: Number, enum: Sex },
+  last_login_ip: {type: String},
 
-  morningWorking: { type: String },
-  morningStartAt: { type: String },
-  morningEndAt: { type: String },
-  afternoonWorking: { type: String },
-  afternoonStartAt: { type: String },
-  afternoonEndAt: { type: String },
+  created_by: {type: String},
 
-  isWorkingTimeDefault: { type: Boolean },
+  created_at: {type: Date},
+  isAdmin: {type: Boolean},
+  isSuperAdmin: {type: Boolean},
 
-  avatarPath: { type: String },
+  avatarPath: {type: String},
 });
 
 UserSchema.pre("save", async function (next) {
