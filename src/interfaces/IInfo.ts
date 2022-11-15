@@ -3,9 +3,9 @@ import { IBase } from "./IBase";
 export interface IIdInfo extends IBase {
     username: string,
 
-    displayName: string,
+    displayName?: string,
 
-    realName: string,
+    realName?: string,
 
     id_number:string,
 
@@ -16,4 +16,5 @@ export interface IIdInfo extends IBase {
     approver: string,
     isVerified: boolean
     id: number
+    user_id: number
 }

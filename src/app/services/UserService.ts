@@ -25,6 +25,7 @@ import {
   UserRepository,
 } from "../../dataAccess/repositories";
 import { IdInfoRepository } from "../../dataAccess/repositories/IdInfoRepo";
+import { IIdInfo } from "src/interfaces";
 
 class UserService extends BaseService<UserRepository> {
   private _roleRepos = new RoleRepository();
@@ -33,9 +34,10 @@ class UserService extends BaseService<UserRepository> {
     super(new UserRepository());
   }
 
-  public getListCccd = async (user_id) => {
+  public getCccd = async (id: number) => {
     try {
-      return  await this._idInfoRepo.findByFilter({id: user_id})
+      const data =  await this._idInfoRepo.findOne(id)
+     return data ? data : false
     } catch (error) {
       throw new ApiError(HttpStatusCode.BAD_REQUEST, `Error is: ${error}`);
     }
@@ -120,6 +122,15 @@ class UserService extends BaseService<UserRepository> {
       );
     }
   };
+
+  public addCccd = async (dto: IIdInfo) => {
+    try {
+      const result =  await this._idInfoRepo.save(dto)
+      return result
+    } catch (error) {
+      throw new ApiError(HttpStatusCode.BAD_REQUEST, `Error is: ${error}`);
+    }
+  }
 
   public create = async (user: CreateUserDTO): Promise<UserDTO> => {
     try {

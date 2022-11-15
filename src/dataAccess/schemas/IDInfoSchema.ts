@@ -17,4 +17,5 @@ export const IdInfoSchema = new Schema({
     approver: { type: String },
     isVerified: { type: Boolean },
     id: { type: Number },
+    user_id: { type: Number },
 });

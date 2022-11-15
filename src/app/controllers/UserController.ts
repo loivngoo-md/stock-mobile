@@ -19,6 +19,7 @@ import { UserService } from "../services";
 import { HttpStatusCode } from "../enums";
 
 import { ApiResponse } from "../core";
+import { Timestamp } from "typeorm";
 
 class UserController {
   private _business: UserService = new UserService();
@@ -121,7 +122,23 @@ class UserController {
     const userId: number = +req.body.user_id;
 
 
-    const result= await this._business.getListCccd(userId)
+    const result = await this._business.getCccd(userId)
+
+    const response: IResponse = {
+      ...ApiResponse,
+      result,
+    };
+
+    return res.status(HttpStatusCode.OK).json(response);
+  };
+
+  public addCccd = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    const dto = req.body;
+    const result = await this._business.addCccd(dto)
 
     const response: IResponse = {
       ...ApiResponse,
@@ -222,8 +239,8 @@ class UserController {
       delete user.avatarPath
       user.avatarPath = "https://cdn-icons-png.flaticon.com/512/21/21104.png"
 
-      const result: UserDTO = await this._business.create(user);
-
+      await this._business.create(user);
+      const result = null
       const response: IResponse = {
         ...ApiResponse,
         result,
@@ -242,10 +259,20 @@ class UserController {
   ) => {
     try {
       const result: GetUserDto[] = await this._business.getUserNotPagging();
+      let tmp = []
+      for (const user of result) {
+        const list_cccd = await this._business.getCccd(user.id)
+        if (list_cccd) {
+          tmp.push({
+            user_info: user,
+            id_info: list_cccd
+          })
+        }
+      }
 
       const response: IResponse = {
         ...ApiResponse,
-        result,
+        result: tmp,
       };
       return res.status(HttpStatusCode.OK).json(response);
     } catch (error) {
