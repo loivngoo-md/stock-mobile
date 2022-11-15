@@ -14,7 +14,7 @@ const core_1 = require("../core");
 const base_1 = require("./base");
 const enums_1 = require("../enums");
 const repositories_1 = require("../../dataAccess/repositories");
-const IdInfoRepo_1 = require("src/dataAccess/repositories/IdInfoRepo");
+const IdInfoRepo_1 = require("../../dataAccess/repositories/IdInfoRepo");
 class UserService extends base_1.BaseService {
     constructor() {
         super(new repositories_1.UserRepository());

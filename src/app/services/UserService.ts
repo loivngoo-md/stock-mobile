@@ -24,7 +24,7 @@ import {
   RoleRepository,
   UserRepository,
 } from "../../dataAccess/repositories";
-import { IdInfoRepository } from "src/dataAccess/repositories/IdInfoRepo";
+import { IdInfoRepository } from "../../dataAccess/repositories/IdInfoRepo";
 
 class UserService extends BaseService<UserRepository> {
   private _roleRepos = new RoleRepository();
